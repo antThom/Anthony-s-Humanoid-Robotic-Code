@@ -5,23 +5,29 @@
 // switch sensor pins, motor pins, Controller constants, etc...
 */
 
-// Switches and Buttons
 
+char command;
+
+// Switches and Buttons
 int wristSwitch=53;		//Limit Switch for wrist calibration
 int clawSwitch=51;		//Limit Switch for claw calibration
+
+
 
 // Switch States and Button States
 int wristState, clawState;
 
-// Encoders
 
+
+// Encoders
 Encoder clawEncoder(49,47);
 long clawPosition=-999;
 long newClawPosition;
-long clawLimit[]; //Save three values(closeLimit,openLimit,maxDistance)
+long clawLimit[]={0,0,0}; //Save three values(closeLimit,openLimit,maxDistance)
+
+
 
 // Motors
-
 DRV8835MotorShield clawMotor;
 int clawSpeed= 300;
 
