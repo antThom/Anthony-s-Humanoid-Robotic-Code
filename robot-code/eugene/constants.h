@@ -5,7 +5,8 @@
 // switch sensor pins, motor pins, Controller constants, etc...
 */
 
-
+int ref=0;
+int num;
 char command;
 
 // Switches and Buttons
@@ -29,6 +30,6 @@ long clawLimit[]={0,0,0}; //Save three values(closeLimit,openLimit,maxDistance)
 
 // Motors
 DRV8835MotorShield clawMotor;
-int clawSpeed= 300;
+int clawSpeed;
 
 #endif
