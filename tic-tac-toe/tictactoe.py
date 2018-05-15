@@ -21,17 +21,13 @@ def instruct():
 
 
 def coinFlip():
-	coin=str(randint(1,2))
-	choice=raw_input('Pick a side 1: Heads or 2: Tails : ')
-	if isinstance(choice, int)==False:
-		while isinstance(choice, int)==False:
-			print'INVALID ENTRY!!! TRY AGAIN'
-			choice=int(raw_input('Pick a side 1: Heads or 2: Tails : '))
-	elif choice>9 or choice<1:
-		while (choice!=2 or choice!=1):
-			print'INVALID ENTRY!!! TRY AGAIN'
-			choice=int(raw_input('Pick a side 1: Heads or 2: Tails : '))
-	if choice == coin:
+	coin=str(randint(1,2)) #get a random integer between 1 and 2 and convert it to a string
+	choice=raw_input('Pick a side 1: Heads or 2: Tails : ') #ask the user to choose a number (choice is a string)
+	if choice != '1' or choice != '2': #if choice does not equal 1 or 2 then ask for a new entry
+		while (choice != '1' and choice != '2'):
+			print 'INVALID ENTRY'
+			choice=raw_input('Pick a side 1: Heads or 2: Tails : ')
+	if choice == coin: #if the user's choice is equal to coin then the user wins
 		print('')
 		print 'You won the coin toss so you go first'
 		print('')
@@ -49,7 +45,10 @@ def makeBoard(board):
 	print(' ' + board[0] + ' | ' + board[1] + ' | ' + board[2])
 	print(' ' + board[3] + ' | ' + board[4] + ' | ' + board[5])
 	print(' ' + board[6] + ' | ' + board[7] + ' | ' + board[8])
-
+"""
+This is where the machine learning takes place.
+Step 1: Create data that will be used by the computer 
+"""
 def COMplay(board,human,COM):
 	#1st check to see what the open slots are
 	#2nd choose any position that isn't taken
@@ -73,16 +72,27 @@ def openSpot(board,place):
 
 	return taken
 
+"""
+if choice != '1' or choice != '2': #if choice does not equal 1 or 2 then ask for a new entry
+		while (choice != '1' and choice != '2'):
+			print 'INVALID ENTRY'
+			choice=raw_input('Pick a side 1: Heads or 2: Tails : ')
+"""
+
 def humanTurn():
-	pos=raw_input('Choose which spot you to play: ')
-	if isinstance(pos, int)==False:
-		while isinstance(pos, int)==False:
-			print'INVALID ENTRY!!! TRY AGAIN'
-			pos=int(raw_input('Choose which spot you to play: '))
-	elif pos>9 or pos<1:
-		while (pos>9 or pos<1):
-			print'INVALID ENTRY!!! TRY AGAIN'
-			pos=int(raw_input('Choose which spot you to play: '))
+	"""
+	This function will ask the user where he would like to go next and returns that position
+	to the main function
+	"""
+	pos = ord(raw_input('Choose which spot you to play: ')) # ask the user for thier input and convert it to ascii code
+	if (pos>57 or pos<49): # if the entry is out of range according to the ascii code
+		flag=True #create a flag for the while loop and set it to true
+		while (flag==True):
+			print 'INVALID ENTRY!!! TRY AGAIN' # let the user know that the entry was invalid
+			pos = ord(raw_input('Choose which spot you to play: ')) # re-ask the user for their input
+			if (pos<=57 and pos>=47 and pos!=0): # if the input is in range according to the ascii code set the flag to false and exit the while loop
+				flag=False
+	pos=int(str(unichr(pos))) #Convert the string back to an integer
 	return pos
 
 def winning(board,playerID,win):
