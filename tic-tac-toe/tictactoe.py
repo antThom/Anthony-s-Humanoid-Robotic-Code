@@ -48,7 +48,8 @@ def makeBoard(board):
 
 
 """
-This is where the machine learning takes place.
+This is where the machine learning takes place. The computer should get smarter the more you play against it.
+
 Step 1: Create data that will be used by the computer 
 """
 def COMplay(board,human,COM):
@@ -99,7 +100,7 @@ def humanTurn(board,human,COM):
 					flag=True
 				else:
 					flag=False
-	
+
 	return pos
 
 def winning(board,playerID,win):
@@ -135,6 +136,8 @@ def banner(playerID):
 		print ' '
 		print ' '
 
+def createData(human):
+	print()
 def main():
 	play=True
 	while play==True:
