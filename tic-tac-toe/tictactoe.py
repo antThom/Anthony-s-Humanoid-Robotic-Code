@@ -88,19 +88,19 @@ def humanTurn(board,human,COM):
 	print takenHUM
 	print takenCOM
 	pos = ord(raw_input('Choose which spot you to play: ')) # ask the user for thier input and convert it to ascii code
-	
 	if ((pos>57 or pos<49) or (int(str(unichr(pos))) in takenHUM or int(str(unichr(pos))) in takenCOM)): # if the entry is out of range according to the ascii code or is already taken
 		flag=True #create a flag for the while loop and set it to true
 		while (flag==True):
 			print 'INVALID ENTRY!!! TRY AGAIN' # let the user know that the entry was invalid
 			pos = ord(raw_input('Choose which spot you to play: ')) # re-ask the user for their input
-			if (pos<=57 and pos>=49 and pos!=0): # if the input is in range according to the ascii code set the flag to false and exit the while loop
+			if (pos<=57 and pos>=49): # if the input is in range according to the ascii code set the flag to false and exit the while loop
 				pos=int(str(unichr(pos))) #Convert the string back to an integer
 				if (pos in takenHUM or pos in takenCOM): # if the entry is already taken do not allow the user to select that point
 					flag=True
 				else:
 					flag=False
-
+	else:
+		pos=int(str(unichr(pos)))
 	return pos
 
 def winning(board,playerID,win):
@@ -138,6 +138,7 @@ def banner(playerID):
 
 def createData(human):
 	print()
+
 def main():
 	play=True
 	while play==True:
