@@ -6,6 +6,7 @@ second print the key options for placement
 ''' 
 from random import *
 import create as cd
+import analyzeData as AD
 import subprocess as sp
 import collections
 import matplotlib
@@ -173,20 +174,24 @@ def main():
 			if first == True and turn==1: #This means the human goes first
 				pos = humanTurn(board,human,COM)
 				humMove=pos
+				comMove=0
 				board[pos-1] = human #Human ALWAYS PLAYS AS X
 				nex='com'
 			elif first == False and turn ==1:
 				pos=COMplay(board,human,COM)
+				comMove=pos
 				humMove=0
 				board[pos-1] = COM
 				nex='hum'
 			elif nex=='hum':
 				pos=humanTurn(board,human,COM)
 				humMove=pos
+				comMove=0
 				board[pos-1] = human #Human ALWAYS PLAYS AS X
 				nex='com'
 			elif nex=='com':
 				pos=COMplay(board,human,COM)
+				comMove=pos
 				humMove=0
 				board[pos-1] = COM
 				nex='hum'
@@ -264,8 +269,10 @@ def main():
 			else:
 				meth=0
 			turn=turn+1
-			if (nex=='com' or turn == 10):
-				cd.createData(humMove,gameNum,turn,meth)
+			if (turn <= 10):
+				cd.createData(humMove,comMove,gameNum,turn,meth)
+		if gameNum>0:
+			AD.orderData()
 		again=raw_input('Do you want to play again Y\N:? ')
 		again=again.upper()
 		gameNum+=1
