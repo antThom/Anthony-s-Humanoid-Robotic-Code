@@ -4,7 +4,7 @@
 //   Best Performance: both pins have interrupt capability
 //   Good Performance: only the first pin has interrupt capability
 //   Low Performance:  neither pin has interrupt capability
-Encoder knobLeft(49, 47);
+Encoder knobLeft(9, 10);
 Encoder knobRight(7, 8);
 //   avoid using pins with LEDs attached
 
