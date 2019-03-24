@@ -20,34 +20,24 @@ def orderData():
 		for row in reader:
 			if (row['gameNum'] != 'game'):
 				# In this loop you will save all data in their cooresponding fieldnames
-				gameNum.append(row['gameNum'])
-				humPos.append(row['hum'])
-				comPos.append(row['com'])
-				turn.append(row['turn'])
-				method.append(row['winMeth'])
-			#if (method[row] != 0):
-				#comWin=winOrLose(method)
-				#print comWin
-				#print type(method[0])
-		'''
-		print gameNum
-		print humPos
-		print comPos
-		print turn
-		'''
-		print method
-		#print len(method)
-		print method[len(method)-1]
-		
+				gameNum.append(int(row['gameNum']))
+				humPos.append(int(row['hum']))
+				comPos.append(int(row['com']))
+				turn.append(int(row['turn']))
+				method.append(int(row['winMeth']))
 
-def winOrLose(method):
-	if method > 0:
-		comWin=True
-	elif method < 0:
-		comWin=False
-	else:
-		comWin=-1
-	return comWin
+		# Remove all zeros from each list
+		method=list(filter(lambda a: a!=0, method))
+		humPos=list(filter(lambda a: a!=0, humPos))
+		comPos=list(filter(lambda a: a!=0, comPos))
+		gameNum=list(set(gameNum))
+		print comPos
+		print humPos
+		print method
+		print gameNum
+		print turn
+		
+		
 
 def main():
 	orderData()
